@@ -1,11 +1,14 @@
 <template>
   <transition name="slide-fade">
     <div class="page">
-      <div class="title" v-if="tittleShow">
+      <div class="title" v-if="backShow">
         <div @click="goBack" class="back-box" v-if="back">
           <yf-svg-icon name="arrow-right" class="back-icon"></yf-svg-icon>
         </div>
         <span>{{ title }}</span>
+      </div>
+      <div class="title" v-else>
+        <slot name="title"></slot>
       </div>
       <div class="container">
         <slot></slot>
@@ -27,6 +30,13 @@ export default {
       tittleShow: true
     };
   },
+  mounted() {
+    console.log("this", this);
+    this.title = `${this.$route.name}${this.$route.meta.title}`;
+  },
+  activated() {
+    this.title = `${this.$route.name}${this.$route.meta.title}`;
+  },
   props: {
     loading: {
       type: Boolean,
@@ -43,16 +53,12 @@ export default {
     }
   },
   watch: {
-    $route: {
-      handler(to) {
-        setTimeout(() => {
-          this.title = `${to.name}${to.meta.title}`;
-          if (to.name === "home") {
-            this.tittleShow = false;
-            return;
-          }
-          this.tittleShow = true;
-        }, 0);
+    $slots: {
+      handler(newVal) {
+        this.backShow = true;
+        if (newVal.title) {
+          this.backShow = false;
+        }
       },
       immediate: true
     }

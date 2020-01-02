@@ -1,7 +1,9 @@
 <template>
-  <div class="svgicon">
-    <yf-svg-icon name="Loading"></yf-svg-icon>
-  </div>
+  <Page>
+    <div class="svgicon">
+      <yf-svg-icon name="load-c"></yf-svg-icon>
+    </div>
+  </Page>
 </template>
 
 <script>

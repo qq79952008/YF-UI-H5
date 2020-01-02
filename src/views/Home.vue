@@ -1,7 +1,9 @@
 <template>
   <Page>
-    <div class="home">
+    <template slot="title">
       <div class="title">YF-UI-H5</div>
+    </template>
+    <div class="home">
       <div
         class="components-list"
         v-for="(list, listIndex) in componentsList"
