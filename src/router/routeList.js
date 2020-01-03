@@ -28,5 +28,15 @@ export default [
       keepAlive: true
     },
     component: () => import("../views/basic/svgicon.vue")
+  },
+  {
+    path: "/longlist",
+    name: "longlist",
+    meta: {
+      title: "长列表",
+      type: "view",
+      keepAlive: true
+    },
+    component: () => import("../views/view/longlist.vue")
   }
 ];
